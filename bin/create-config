@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-// Ghost Configuration for Heroku
+ // Ghost Configuration for Heroku
 
 var fs = require('fs');
 var path = require('path');
@@ -16,11 +16,11 @@ function createConfig() {
     storage = {
       active: 's3',
       's3': {
-        accessKeyId:     process.env.S3_ACCESS_KEY_ID,
+        accessKeyId: process.env.S3_ACCESS_KEY_ID,
         secretAccessKey: process.env.S3_ACCESS_SECRET_KEY,
-        bucket:          process.env.S3_BUCKET_NAME,
-        region:          process.env.S3_BUCKET_REGION,
-        assetHost:       process.env.S3_ASSET_HOST_URL
+        bucket: process.env.S3_BUCKET_NAME,
+        region: process.env.S3_BUCKET_REGION,
+        assetHost: process.env.S3_ASSET_HOST_URL
       }
     }
   } else if (!!process.env.BUCKETEER_AWS_ACCESS_KEY_ID) {
@@ -28,11 +28,11 @@ function createConfig() {
     storage = {
       active: 's3',
       's3': {
-        accessKeyId:     process.env.BUCKETEER_AWS_ACCESS_KEY_ID,
+        accessKeyId: process.env.BUCKETEER_AWS_ACCESS_KEY_ID,
         secretAccessKey: process.env.BUCKETEER_AWS_SECRET_ACCESS_KEY,
-        bucket:          process.env.BUCKETEER_BUCKET_NAME,
-        region:          process.env.S3_BUCKET_REGION,
-        assetHost:       process.env.S3_ASSET_HOST_URL
+        bucket: process.env.BUCKETEER_BUCKET_NAME,
+        region: process.env.S3_BUCKET_REGION,
+        assetHost: process.env.S3_ASSET_HOST_URL
       }
     }
   } else {
@@ -61,7 +61,10 @@ function createConfig() {
     database: {
       client: 'mysql',
       connection: getMysqlConfig(envValues.mysqlDatabaseUrl),
-      pool: { min: 0, max: 5 },
+      pool: {
+        min: 0,
+        max: 5
+      },
       debug: false
     },
     server: {
@@ -70,7 +73,8 @@ function createConfig() {
     },
     paths: {
       contentPath: path.join(appRoot, '/content/')
-    }
+    },
+    forceAdminSSL: true
   };
 
   return config;
